@@ -24,12 +24,10 @@ class CalculationGenerator:
     Note
     ----
     - Supported operations : "+", "-", "*", "/".
-    - The level of difficulty is linked to the number of carry-overs.
 
     Returns
     -------     
 
-    
     """
     def __init__(self, num_type, num_digits, operation, difficulty):
         self.num_type = num_type
@@ -51,17 +49,12 @@ class CalculationGenerator:
                 self.a += a_i*10**i
                 self.b += b_i*10**i
                 i+=1
-        if self.difficulty == "medium": #not complete
+        if self.difficulty == "medium":
             i = 0
             carry_over = 0
             while i < self.num_digits: 
-                if i == self.num_digits-1:
-                    a_i = rd.randint(1,8)
-                    b_i = rd.randint(1,9-a_i)
-                else:
-                    pass
                 a_i = rd.randint(1,9)
-                b_i = rd.randint(10-carry_over-a_i,9)
+                b_i = rd.randint(max(1,6-carry_over-a_i),9)
                 carry_over = (a_i+b_i)//10
                 self.a += a_i*10**i
                 self.b += b_i*10**i
@@ -75,11 +68,27 @@ class CalculationGenerator:
                 carry_over = (a_i+b_i)//10
                 self.a += a_i*10**i
                 self.b += b_i*10**i
-                i+=1     
+                i+=1  
+        self.result = self.a + self.b 
+    
+    def generation_substraction(self):
+        
+        
+        self.result = self.a - self.b 
+        pass
+    
+    def generation_multiplication(self):
+        pass
+    def generation_division(self):
+        pass
+    
+    
+    
 
+    
 if __name__ == "__main__":
     print("Test zone :")
-    calculation = CalculationGenerator(int, 3, "+", "hard")
+    calculation = CalculationGenerator(int, 3, "+", "medium")
     calculation.generation_addition()
     print(calculation.a)
     print(calculation.b)
