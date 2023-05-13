@@ -118,22 +118,27 @@ class CalculationGenerator:
     
     def generation_multiplication(self):
         if self.difficulty == "easy":
-            pass
+            self.a = rd.randint(11,99)
+            self.b = rd.randint(2,9)
         if self.difficulty == "medium":
-            pass
+            self.a = rd.randint(11,999)
+            self.b = rd.randint(11,99)
         if self.difficulty == "hard":
-            pass
+            self.a = rd.randint(101,9999)
+            self.b = rd.randint(11,999)
         self.result = self.a * self.b 
-        pass
+        
     def generation_division(self):
         if self.difficulty == "easy":
-            pass
+            self.a = rd.randint(11,99)
+            self.b = rd.randint(2,9)
         if self.difficulty == "medium":
-            pass
+            self.a = rd.randint(100,999)
+            self.b = rd.choice([rd.randint(2,9), rd.randint(11,99)])
         if self.difficulty == "hard":
-            pass
-        #self.result = self.a // self.b, self.a % self.b
-        pass
+            self.a = rd.randint(1000,9999)
+            self.b = rd.randint(11,99)
+        self.result = self.a // self.b, self.a % self.b
     
     
     
@@ -141,7 +146,8 @@ class CalculationGenerator:
     
 if __name__ == "__main__":
     print("Test zone :")
-    calculation = CalculationGenerator(int, 4, "-", "medium")
-    calculation.generation_substraction()
+    calculation = CalculationGenerator(int, 4, "/", "hard")
+    calculation.generation_division()
     print(calculation.a)
     print(calculation.b)
+    print(calculation.result)
