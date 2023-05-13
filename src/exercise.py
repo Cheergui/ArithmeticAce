@@ -72,14 +72,67 @@ class CalculationGenerator:
         self.result = self.a + self.b 
     
     def generation_substraction(self):
-        
-        
+        if self.difficulty == "easy":
+            i = 0
+            while i < self.num_digits:
+                if i == self.num_digits-1:
+                    b_i = rd.randint(1,9)
+                    a_i = rd.randint(b_i,9)
+                else:
+                    b_i = rd.randint(0,9)
+                    a_i = rd.randint(b_i,9)
+                self.a += a_i*10**i
+                self.b += b_i*10**i
+                i+=1          
+        if self.difficulty == "medium":
+            i = 0
+            while i < self.num_digits:
+                if i == self.num_digits-1:
+                    b_i = rd.randint(1,8)
+                    a_i = rd.randint(b_i+1,9)
+                else:
+                    x = rd.randint(0,9)
+                    y = rd.randint(x,9)
+                    a_i = rd.choice([x,y])
+                    b_i = x if a_i == y else y
+                self.a += a_i*10**i
+                self.b += b_i*10**i
+                i+=1
+        if self.difficulty == "hard":
+            i = 0
+            while i < self.num_digits:
+                if i == self.num_digits-1:
+                    b_i = rd.randint(1,7)
+                    a_i = rd.randint(b_i+2,9)
+                elif i == 0:
+                    a_i = rd.randint(0,8)
+                    b_i = rd.randint(a_i,9)
+                else:
+                    a_i = rd.randint(0,9)
+                    b_i = rd.randint(a_i,9)
+                self.a += a_i*10**i
+                self.b += b_i*10**i
+                i+=1
         self.result = self.a - self.b 
         pass
     
     def generation_multiplication(self):
+        if self.difficulty == "easy":
+            pass
+        if self.difficulty == "medium":
+            pass
+        if self.difficulty == "hard":
+            pass
+        self.result = self.a * self.b 
         pass
     def generation_division(self):
+        if self.difficulty == "easy":
+            pass
+        if self.difficulty == "medium":
+            pass
+        if self.difficulty == "hard":
+            pass
+        #self.result = self.a // self.b, self.a % self.b
         pass
     
     
@@ -88,7 +141,7 @@ class CalculationGenerator:
     
 if __name__ == "__main__":
     print("Test zone :")
-    calculation = CalculationGenerator(int, 3, "+", "medium")
-    calculation.generation_addition()
+    calculation = CalculationGenerator(int, 4, "-", "medium")
+    calculation.generation_substraction()
     print(calculation.a)
     print(calculation.b)
