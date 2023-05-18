@@ -146,8 +146,8 @@ class CalculationGenerator:
     
 if __name__ == "__main__":
     print("Test zone :")
-    calculation = CalculationGenerator(int, 4, "/", "hard")
-    calculation.generation_division()
+    calculation = CalculationGenerator(int, 2, "-", "hard")
+    calculation.generation_substraction()
     print(calculation.a)
     print(calculation.b)
     print(calculation.result)
