@@ -1,6 +1,5 @@
 from jinja2 import Environment, FileSystemLoader
 
-
 # Création de l'environnement Jinja2
 env = Environment(loader=FileSystemLoader('.'))
 template = env.get_template('templates/exercises_template.html')
@@ -13,3 +12,5 @@ result = template.render(title=title)
 
 # Affichage du résultat
 print(result)
+
+
