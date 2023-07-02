@@ -7,34 +7,28 @@ class CalculationGenerator:
 
     Parameters
     ----------
-
-    num_type : int or float
-        type of number used in the calculations, can be integer or decimal.
-        Example:  int -> 1, float -> 1.5
-    num_digits : int
-        number of digits for the operand in the calculation.
-        Example:  2
     operation : str
         type of operation to perform in the calculation.
-        Example:  "+", "-", "*", "/"
+        Example:  "addition", "substraction", "multiplication", "division"
     difficulty : str
         level of difficulty of the calculation
         Example:  "easy", "medium", "hard"
 
     Note
     ----
-    - Supported operations : "+", "-", "*", "/".
-
-    Returns
-    -------     
-
+    Supported operations : "+", "-", "*", "/".
     """
-    def __init__(self, num_type, num_digits, operation, difficulty):
-        self.num_type = num_type
-        self.num_digits = num_digits
+    
+    def __init__(self, operation, difficulty):
         self.operation = operation
         self.difficulty = difficulty
         self.a, self.b = 0, 0
+        if self.difficulty == "easy":
+            self.num_digits = 2
+        if self.difficulty == "medium":
+            self.num_digits = 3
+        if self.difficulty == "hard":
+            self.num_digits = 4
 
     def generation_addition(self):
         if self.difficulty == "easy":
@@ -114,7 +108,6 @@ class CalculationGenerator:
                 self.b += b_i*10**i
                 i+=1
         self.result = self.a - self.b 
-        pass
     
     def generation_multiplication(self):
         if self.difficulty == "easy":
@@ -140,14 +133,28 @@ class CalculationGenerator:
             self.b = rd.randint(11,99)
         self.result = self.a // self.b, self.a % self.b
     
+    def generate(self):
+        if self.operation == "addition":
+            self.generation_addition()
+        if self.operation == "substraction":
+            self.generation_substraction()
+        if self.operation == "multiplication":
+            self.generation_multiplication()
+        if self.operation == "division":
+            self.generation_division()
+        # x, y, z = self.a, self.b, self.result
+        # self.a, self.b = 0, 0
+        return self.a, self.b, self.result
+        # return x, y, z
     
+
     
 
     
 if __name__ == "__main__":
     print("Test zone :")
-    calculation = CalculationGenerator(int, 2, "-", "hard")
-    calculation.generation_substraction()
-    print(calculation.a)
-    print(calculation.b)
-    print(calculation.result)
+    operation = rd.choice(["addition", "substraction", "multiplication", "division"])
+    difficulty = rd.choice(["easy", "medium", "hard"])
+    calculation = CalculationGenerator(operation, difficulty)
+    CG = CalculationGenerator(operation=operation, difficulty=difficulty)
+    print(CG.generate())
